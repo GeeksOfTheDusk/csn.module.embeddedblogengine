@@ -1,0 +1,18 @@
+@(form: Form[(String, String)])
+<div class="span4 well">
+@helper.form(routes.BlogEngine.createEntry) {
+    @helper.inputText(
+        form("title"),
+        '_label -> "Title: ",
+        '_error -> form.error("title"),
+        'class -> "input-xlarge"
+    )
+    @helper.textarea(
+        form("content"),
+        '_label -> "Content: ",
+        '_error -> form.error("content"),
+        'class -> "input-xlarge"
+    )
+    <button type="submit" class="btn">Create</button>
+}
+</div>

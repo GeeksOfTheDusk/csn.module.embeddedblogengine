@@ -1,0 +1,23 @@
+@(authorID: Long)
+@import models._
+@import controllers.BBCodeParser._
+@for(entry <- models.Blogentry.findAllByCreatorID(authorID)) {
+    <div class="span12">
+        <div class="span6">
+            <h3>@entry.title</h3> @entry.creationTime | by @entry.creatorST
+        </div>
+
+        <div class="well span6">
+            @Html(entry.content.escape)
+        </div>
+        <div class="span12">
+            @if(entry.commentsAllowed) {
+                <a href="/blog/entry/@entry.id">Comments (@Blogcomment.findAllByBlogEntry(entry.id).size)</a>
+            } else {
+                No comments allowed.
+            }
+            <hr/>
+        </div>
+
+    </div>
+}

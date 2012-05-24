@@ -4,15 +4,15 @@ import PlayProject._
 
 object ApplicationBuild extends Build {
 
-    val appName         = "Closed Social Network's mini blog engine"
+    val appName         = "csn_mini_blogengine"
     val appVersion      = "1.0-SNAPSHOT"
 
     val appDependencies = Seq(
-      // Add your project dependencies here,
+      "csn_bbcodeparser" % "csn_bbcodeparser_2.9.1" % "1.0-SNAPSHOT",
+      "twitter_bootstrap_module" % "twitter_bootstrap_module_2.9.1" % "1.0-SNAPSHOT"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
-      // Add your own project settings here      
+      resolvers += "CSN module repository" at "http://repositories.coding-minds.com/modules/releases/"
     )
-
 }

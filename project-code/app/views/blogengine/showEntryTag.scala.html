@@ -1,0 +1,43 @@
+@(entry: models.Blogentry, form: Form[String])
+@import models.Blogcomment
+@import controllers.BBCodeParser._
+@import controllers.BlogEngine._
+
+<div class="span12">
+    <div class="span6">
+        <h3>@entry.title</h3>
+        <small>@formatDate(entry.creationTime) | by @entry.creatorST</small>
+    </div>
+
+
+    <div class="well span6">@Html(entry.content.escape)</div>
+
+    <div class="span6">
+        Comments: <a href="#comment">Leave a comment</a><br/>
+        @for(comment <- Blogcomment.findAllByBlogEntry(entry.id)) {
+            <dl>
+                <dt>By @comment.authorST on @formatDate(comment.creationTime)</dt>
+                <dd>
+                    <div class="well" style="background-color:white;">
+                        @Html(comment.content.escape)
+                    </div>
+                </dd>
+            </dl>
+        }
+    </div>
+
+    <div class="span8">
+        <div class="well span4">
+        <form action="/entry/@entry.id/newComment" method="POST">
+            @helper.textarea(
+                form("content"),
+                '_label -> "Comment: ",
+                '_error -> form.error("content"),
+                'class -> "input-xlarge",
+                'id -> "comment"
+            )
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+        </div>
+    </div>
+</div>
