@@ -5,7 +5,7 @@ import PlayProject._
 object ApplicationBuild extends Build {
 
     val appName         = "csn_mini_blogengine"
-    val appVersion      = "0.3.0"
+    val appVersion      = "0.3.0-SNAPSHOT"
     
     val appDependencies = Seq(
       "csn_bbcodeparser" % "csn_bbcodeparser_2.9.1" % "1.0-SNAPSHOT",
