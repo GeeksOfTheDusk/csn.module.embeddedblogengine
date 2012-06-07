@@ -6,3 +6,11 @@ tmp
 .history
 dist*.class
 *.iml
+
+project-code/.cache
+
+project-code/.classpath
+
+project-code/.project
+
+project-code/.settings/org.scala-ide.sdt.core.prefs
